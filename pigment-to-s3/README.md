@@ -15,12 +15,12 @@ This can be useful if a downstream warehouse/data lake offers S3 loads (e.g. Sno
 1. Create an Export API Key in Pigment, see their documentation [here](https://community.gopigment.com/security-permissions-82/manage-api-keys-226) on how to do this.
 1. Create a new AWS Secrets Manager entry and add your Pigment Export Key in there.
 1. Create a new AWS Lambda project, add the following as environment variables:
-    1. `APP_ID` = Your Pigment App Id
-    1. `AWS_SECRET_NAME` = The secret name that corresponds to the Export API Key in AWS Secrets Manager (e.g. PigmentExportKey)
-    1. `AWS_SECRET_REGION` = The region your AWS Secrets Manager entry resides in (e.g. us-east-1)
-    1. `S3_BUCKET_NAME` = The name of your S3 bucket that will hold the files
-    1. `SECRET_KEY` = The secret key corresponding to your Pigment Export API Key entry in AWS Secrets Manager
-    1. `VIEW_ID` = View Id of the block you want to export from Pigment (e.g. 685f2c0a-be27-4edd-ac58-54eade3336de)
+    - `APP_ID` = Your Pigment App Id
+    - `AWS_SECRET_NAME` = The secret name that corresponds to the Export API Key in AWS Secrets Manager (e.g. PigmentExportKey)
+    - `AWS_SECRET_REGION` = The region your AWS Secrets Manager entry resides in (e.g. us-east-1)
+    - `S3_BUCKET_NAME` = The name of your S3 bucket that will hold the files
+    - `SECRET_KEY` = The secret key corresponding to your Pigment Export API Key entry in AWS Secrets Manager
+    - `VIEW_ID` = View Id of the block you want to export from Pigment (e.g. `685f2c0a-be27-4edd-ac58-54eade3336de`)
 1. Configure AWS IAM manager so your Lambda project's IAM user can read/write to S3 and read from Secrets Manager. You can use either a role or a policy depending on your orgnisation's security/access management policy.
 1. Add the python code, deploy & test. If successful, you'll find a folder in your S3 bucket corresponding to the ISO 8601 date/time when the test was run. Inside will be your CSV.
 
