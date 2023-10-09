@@ -30,4 +30,4 @@ This can be useful if a downstream warehouse/data lake offers S3 loads (e.g. Sno
 * Timer triggers are limited in Lambda without use of AWS Cloud Watch. See their documentation for how to run this using Cloud Watch. Ensure you add CloudWatch to the IAM policy/role as necessary.
 
 # Feedback/Issues
-Feedback is welcome! Please submit any feedback or issues via the Issues tab in Github. A
+Feedback is welcome! Please submit any feedback or issues via the Issues tab in Github.
