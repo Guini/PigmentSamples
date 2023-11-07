@@ -46,7 +46,7 @@
 				"typeProperties": {
 					"variableName": "PigmentExportKey",
 					"value": {
-						"value": "@activity('GetAPIKey').output.pipelineReturnValue",
+						"value": "@activity('GetAPIKey').output.value",
 						"type": "Expression"
 					}
 				}
