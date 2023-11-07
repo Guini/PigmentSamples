@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://management.azure.com/subscriptions/68a9adf7-8a5e-4c9d-8dbf-0812ccab1aee/resourceGroups/Hauntedbakery/providers/Microsoft.KeyVault/vaults/Pigment?api-version=2022-07-01",
+					"url": "https://pigment.vault.azure.net/secrets/PigmentExportKey/4a4cc9da99ac466da289356d29a20dab",
 					"connectVia": {
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
@@ -23,7 +23,7 @@
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
-						"resource": "https://vault.azure.net/"
+						"resource": "https://vault.azure.net"
 					}
 				}
 			},
