@@ -1,0 +1,26 @@
+{
+	"name": "RestService1",
+	"properties": {
+		"parameters": {
+			"list_view_id": {
+				"type": "String",
+				"defaultValue": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa"
+			},
+			"application_id": {
+				"type": "String",
+				"defaultValue": "eb17a15b-f454-4355-8eb7-80a3afa15913"
+			}
+		},
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "@{https://pigment.app/api/workspace/linkedService().application_id/view/ExportListData/linkedService().list_view_id}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
