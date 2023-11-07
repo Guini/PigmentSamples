@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://pigment.vault.azure.net/secrets/PigmentExportKey/4a4cc9da99ac466da289356d29a20dab",
+					"url": "https://pigment.vault.azure.net/secrets/PigmentExportKey/4a4cc9da99ac466da289356d29a20dab?api-version=7.0",
 					"connectVia": {
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
