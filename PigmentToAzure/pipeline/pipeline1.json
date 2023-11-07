@@ -26,8 +26,37 @@
 						"resource": "https://vault.azure.net"
 					}
 				}
+			},
+			{
+				"name": "Set Export API Key",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetAPIKey",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PigmentExportKey",
+					"value": {
+						"value": "@activity('GetAPIKey').output",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"PigmentExportKey": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
