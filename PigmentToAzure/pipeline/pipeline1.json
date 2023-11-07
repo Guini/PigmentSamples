@@ -101,6 +101,7 @@
 						"referenceName": "PigmentExportAPI",
 						"type": "DatasetReference",
 						"parameters": {
+							"list_view_id": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa",
 							"application_id": "eb17a15b-f454-4355-8eb7-80a3afa15913"
 						}
 					}
