@@ -12,7 +12,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "@concat(dataset().application_id,'/view/ExportListData/',dataset().list_view_id)"
+			"relativeUrl": {
+				"value": "@concat(dataset().application_id,'/view/ExportListData/',dataset().list_view_id)",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
