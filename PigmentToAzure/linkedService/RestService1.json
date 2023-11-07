@@ -9,12 +9,15 @@
 			"application_id": {
 				"type": "String",
 				"defaultValue": "eb17a15b-f454-4355-8eb7-80a3afa15913"
+			},
+			"export": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{https://pigment.app/api/workspace/linkedService().application_id/view/ExportListData/linkedService().list_view_id}",
+			"url": "@{https://pigment.app/api/workspace/linkedService().export}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		},
