@@ -12,15 +12,7 @@
 					"name": "ExportCSV"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "PigmentExportAPI",
-						"type": "DatasetReference"
-					},
-					"name": "Sink1"
-				}
-			],
+			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
@@ -29,22 +21,7 @@
 				"     timeout: 30,",
 				"     headers: ['X-Pigment-Api-Key ' -> 'b0e7f5b3-425e-427b-9451-8648fb855b43'],",
 				"     paginationRules: ['supportRFC5988' -> 'true'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> ExportCSV",
-				"ExportCSV sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     deletable:true,",
-				"     insertable:true,",
-				"     updateable:true,",
-				"     upsertable:true,",
-				"     insertHttpMethod: 'POST',",
-				"     deleteHttpMethod: 'DELETE',",
-				"     upsertHttpMethod: 'PUT',",
-				"     updateHttpMethod: 'PATCH',",
-				"     timeout: 30,",
-				"     requestInterval: 0,",
-				"     requestFormat: ['type' -> 'json'],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> Sink1"
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> ExportCSV"
 			]
 		}
 	}
