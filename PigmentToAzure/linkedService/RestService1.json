@@ -9,9 +9,6 @@
 			"application_id": {
 				"type": "String",
 				"defaultValue": "eb17a15b-f454-4355-8eb7-80a3afa15913"
-			},
-			"export": {
-				"type": "String"
 			}
 		},
 		"annotations": [],
