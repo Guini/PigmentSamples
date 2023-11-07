@@ -1,0 +1,162 @@
+{
+	"name": "CSV Work Around",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetAPIKey",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://pigment.vault.azure.net/secrets/PigmentExportKey/4a4cc9da99ac466da289356d29a20dab?api-version=7.0",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "Set Export API Key",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetAPIKey",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PigmentExportKey",
+					"value": {
+						"value": "@activity('GetAPIKey').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "LoadPigmentCSVToADLSv2",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "@{concat('x-pigment-api-key: ',variables('PigmentExportKey'))}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "PigmentExport",
+						"type": "DatasetReference",
+						"parameters": {
+							"application_id": "eb17a15b-f454-4355-8eb7-80a3afa15913",
+							"list_view_id": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CSV",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "PigmentExport",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Set Export API Key",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://pigment.app/api/workspace/eb17a15b-f454-4355-8eb7-80a3afa15913/view/ExportListData/0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"x-pigment-api-key": {
+							"value": "@variables('PigmentExportKey')",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"variables": {
+			"PigmentExportKey": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
