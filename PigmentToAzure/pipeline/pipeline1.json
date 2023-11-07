@@ -52,7 +52,7 @@
 				}
 			},
 			{
-				"name": "LoadPigmentCSV",
+				"name": "LoadPigmentCSVToADLSv2",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -99,7 +99,10 @@
 				"inputs": [
 					{
 						"referenceName": "PigmentExportAPI",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"application_id": "eb17a15b-f454-4355-8eb7-80a3afa15913"
+						}
 					}
 				],
 				"outputs": [
