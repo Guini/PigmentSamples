@@ -17,7 +17,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{https://pigment.app/api/workspace/linkedService().export}",
+			"url": "https://pigment.app/api/workspace/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		},
