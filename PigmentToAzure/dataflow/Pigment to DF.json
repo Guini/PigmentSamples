@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "Pigment to DF",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -9,7 +9,7 @@
 						"referenceName": "PigmentExportAPI",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "ExportCSV"
 				}
 			],
 			"sinks": [],
@@ -21,7 +21,7 @@
 				"     timeout: 30,",
 				"     headers: ['X-Pigment-Api-Key ' -> 'b0e7f5b3-425e-427b-9451-8648fb855b43'],",
 				"     paginationRules: ['supportRFC5988' -> 'true'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> source1"
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> ExportCSV"
 			]
 		}
 	}
