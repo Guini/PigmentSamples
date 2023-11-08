@@ -1,0 +1,9 @@
+{
+	"name": "PigmentToAzureDF",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a2926e6d-ca39-4297-88d5-c80560d1cdd8",
+		"tenantId": "eaf32cfa-90e7-4c7f-b780-b8b36d879278"
+	}
+}
