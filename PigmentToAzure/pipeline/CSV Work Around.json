@@ -86,7 +86,26 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -96,6 +115,12 @@
 							"application_id": "eb17a15b-f454-4355-8eb7-80a3afa15913",
 							"list_view_id": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa"
 						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CSVBlobStore",
+						"type": "DatasetReference"
 					}
 				]
 			}
