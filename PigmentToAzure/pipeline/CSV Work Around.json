@@ -86,26 +86,7 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
@@ -116,47 +97,7 @@
 							"list_view_id": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa"
 						}
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "CSV",
-						"type": "DatasetReference"
-					}
 				]
-			},
-			{
-				"name": "PigmentExport",
-				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "Set Export API Key",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"url": "https://pigment.app/api/workspace/eb17a15b-f454-4355-8eb7-80a3afa15913/view/ExportListData/0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa",
-					"connectVia": {
-						"referenceName": "AutoResolveIntegrationRuntime",
-						"type": "IntegrationRuntimeReference"
-					},
-					"method": "GET",
-					"headers": {
-						"x-pigment-api-key": {
-							"value": "@variables('PigmentExportKey')",
-							"type": "Expression"
-						}
-					}
-				}
 			}
 		],
 		"variables": {
