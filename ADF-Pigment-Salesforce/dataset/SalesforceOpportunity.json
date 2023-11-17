@@ -2,7 +2,7 @@
 	"name": "SalesforceOpportunity",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Salesforce1",
+			"referenceName": "Salesforce",
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"SFDCUsername": {

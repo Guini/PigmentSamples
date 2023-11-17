@@ -1,5 +1,5 @@
 {
-	"name": "Pigment Upsert To Salesforce Opportunity",
+	"name": "Upsert From Pigment To Salesforce Opportunity",
 	"properties": {
 		"activities": [
 			{

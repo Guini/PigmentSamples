@@ -1,5 +1,5 @@
 {
-	"name": "Salesforce1",
+	"name": "Salesforce",
 	"properties": {
 		"parameters": {
 			"SFDCUsername": {
