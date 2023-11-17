@@ -16,7 +16,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "@concat(dataset().application_id,'/view/ExportListData/',dataset().list_view_id)",
+					"value": "@dataset().list_view_id",
 					"type": "Expression"
 				}
 			},
