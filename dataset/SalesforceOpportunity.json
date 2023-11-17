@@ -1,0 +1,26 @@
+{
+	"name": "SalesforceOpportunity",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"SFDCUsername": {
+					"value": "@dataset().SFDCUsername",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"SFDCUsername": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Opportunity"
+		}
+	}
+}

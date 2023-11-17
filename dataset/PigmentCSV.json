@@ -1,0 +1,63 @@
+{
+	"name": "PigmentCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PigmentExport",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ViewId": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().ViewId",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "External_ID",
+				"type": "String"
+			},
+			{
+				"name": "Opportunity_Name",
+				"type": "String"
+			},
+			{
+				"name": "Account_Name",
+				"type": "String"
+			},
+			{
+				"name": "Amount",
+				"type": "String"
+			},
+			{
+				"name": "Stage",
+				"type": "String"
+			},
+			{
+				"name": "Expected_Revenue",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "Opportunity_Owner",
+				"type": "String"
+			}
+		]
+	}
+}

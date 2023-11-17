@@ -1,0 +1,174 @@
+{
+	"name": "Pigment Upsert To Salesforce Opportunity",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetPigmentAPIKey",
+				"description": "Calls Azure Key Vault to grab the stored Pigment Export API key.",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@variables('SecretIdentifierURL')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "SetAPIKey",
+				"description": "Sets the result of the previous stage (GetPigmentAPIKey) into a variable (PigmentExportKey) to use in the next step (UpdateSalesforce).",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetPigmentAPIKey",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PigmentExportKey",
+					"value": {
+						"value": "@activity('GetPigmentAPIKey').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "UpdateSalesforce",
+				"description": "Grabs an Export from Pigment's API using a specified view ID. Maps the columns in that Export to Salesforce fields. \nIf the Export_ID matches, the function updates the SFDC record. If there is no match, a new record is created instead.",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SetAPIKey",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "@{concat('Authorization: Bearer ',variables('PigmentExportKey'))}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SalesforceSink",
+						"writeBatchSize": 5000,
+						"writeBehavior": "upsert",
+						"externalIdFieldName": "External_ID__c",
+						"ignoreNullValues": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "External_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "External_ID__c"
+								}
+							},
+							{
+								"source": {
+									"name": "Opportunity_Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Name"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "PigmentCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"ViewId": {
+								"value": "@variables('PigmentViewId')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SalesforceOpportunity",
+						"type": "DatasetReference",
+						"parameters": {
+							"SFDCUsername": {
+								"value": "@variables('SFDCUsername')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"PigmentExportKey": {
+				"type": "String"
+			},
+			"PigmentViewId": {
+				"type": "String"
+			},
+			"SFDCUsername": {
+				"type": "String"
+			},
+			"SecretIdentifierURL": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
