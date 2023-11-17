@@ -80,7 +80,7 @@
 							"type": "HttpReadSettings",
 							"requestMethod": "GET",
 							"additionalHeaders": {
-								"value": "@{concat('x-pigment-api-key: ',variables('PigmentExportKey'))}",
+								"value": "@{concat('Authorization: Bearer ',variables('PigmentExportKey'))}",
 								"type": "Expression"
 							},
 							"requestTimeout": ""
