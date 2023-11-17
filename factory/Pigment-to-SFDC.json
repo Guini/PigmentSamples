@@ -1,9 +1,0 @@
-{
-	"name": "Pigment-to-SFDC",
-	"location": "eastus",
-	"identity": {
-		"type": "SystemAssigned",
-		"principalId": "a654f266-eedc-4da7-a505-69463213588a",
-		"tenantId": "eaf32cfa-90e7-4c7f-b780-b8b36d879278"
-	}
-}
