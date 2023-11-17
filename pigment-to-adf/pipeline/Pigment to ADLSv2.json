@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "GetAPIKey",
+				"description": "Calls Azure Key Vault to grab the stored Pigment Export API key.",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
