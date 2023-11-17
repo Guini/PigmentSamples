@@ -113,7 +113,13 @@
 				"inputs": [
 					{
 						"referenceName": "PigmentExport",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"list_view_id": {
+								"value": "@pipeline().parameters.PigmentViewId",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
