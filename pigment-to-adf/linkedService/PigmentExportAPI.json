@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://pigment.app/api/workspace/",
+			"url": "https://pigment.app/api/export/view/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		},
