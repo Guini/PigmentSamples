@@ -3,7 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetAPIKey",
+				"name": "GetPigmentAPIKey",
+				"description": "Calls Azure Key Vault to grab the stored Pigment Export API key.",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -31,11 +32,11 @@
 				}
 			},
 			{
-				"name": "Set Export API Key",
+				"name": "SetExportAPIKey",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "GetAPIKey",
+						"activity": "GetPigmentAPIKey",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -49,7 +50,7 @@
 				"typeProperties": {
 					"variableName": "PigmentExportKey",
 					"value": {
-						"value": "@activity('GetAPIKey').output.value",
+						"value": "@activity('GetPigmentAPIKey').output.value",
 						"type": "Expression"
 					}
 				}
@@ -59,7 +60,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set Export API Key",
+						"activity": "SetExportAPIKey",
 						"dependencyConditions": [
 							"Succeeded"
 						]
