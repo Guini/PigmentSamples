@@ -17,7 +17,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "@variables('SecretIdentifierURL')",
+						"value": "@concat(pipeline().parameters.SecretIdentifierURL,'?api-version=7.0')",
 						"type": "Expression"
 					},
 					"connectVia": {
@@ -135,7 +135,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"ViewId": {
-								"value": "@variables('PigmentViewId')",
+								"value": "@pipeline().parameters.PigmentViewId",
 								"type": "Expression"
 							}
 						}
@@ -147,7 +147,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"SFDCUsername": {
-								"value": "@variables('SFDCUsername')",
+								"value": "@pipeline().parameters.SFDCUsername",
 								"type": "Expression"
 							}
 						}
@@ -155,17 +155,19 @@
 				]
 			}
 		],
-		"variables": {
-			"PigmentExportKey": {
-				"type": "String"
-			},
+		"parameters": {
 			"PigmentViewId": {
-				"type": "String"
+				"type": "string"
 			},
 			"SFDCUsername": {
-				"type": "String"
+				"type": "string"
 			},
 			"SecretIdentifierURL": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"PigmentExportKey": {
 				"type": "String"
 			}
 		},
