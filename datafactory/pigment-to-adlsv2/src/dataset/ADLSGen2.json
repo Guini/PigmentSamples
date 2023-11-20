@@ -1,5 +1,5 @@
 {
-	"name": "CSVBlobStore",
+	"name": "ADLSGen2",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage",
