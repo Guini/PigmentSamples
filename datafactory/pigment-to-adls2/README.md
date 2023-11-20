@@ -8,7 +8,7 @@ Use this if you're just interested in the pipeline without the linked services.
 1. Create your Data Factory in Azure
 2. Navigate to the Studio for the above factory
 3. Open the template gallery and select **import pipeline template**
-4. Select the `Pigment to ADLS Gen2.zip` file contained in this folder
+4. Download and select the `Pigment to ADLS Gen2.zip` file contained in this folder
 5. Fill in the template details, then save
 6. The template will be in the gallery, select it and complete the linked services for ADLS Gen2 and Pigment Export. If you're unsure what these should look like, use the examples in the `src/linkedService` folder.
 
