@@ -126,7 +126,17 @@
 				"outputs": [
 					{
 						"referenceName": "ADLSGen2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileSystem": {
+								"value": "@pipeline().parameters.ADLSFileSystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.ADLSDirectory",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
@@ -137,6 +147,12 @@
 			},
 			"PigmentViewId": {
 				"type": "string"
+			},
+			"ADLSFileSystem": {
+				"type": "String"
+			},
+			"ADLSDirectory": {
+				"type": "String"
 			}
 		},
 		"variables": {
