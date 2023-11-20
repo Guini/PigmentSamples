@@ -56,7 +56,7 @@
 				}
 			},
 			{
-				"name": "LoadPigmentCSVToADLSv2",
+				"name": "LoadCSVToADLS",
 				"type": "Copy",
 				"dependsOn": [
 					{
