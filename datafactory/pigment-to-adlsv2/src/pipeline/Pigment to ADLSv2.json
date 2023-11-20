@@ -33,6 +33,7 @@
 			},
 			{
 				"name": "SetExportAPIKey",
+				"description": "Sets the result of the previous stage (GetPigmentAPIKey) into a variable (PigmentExportKey) to use in the next step (LoadCSVToADLS).",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -57,6 +58,7 @@
 			},
 			{
 				"name": "LoadCSVToADLS",
+				"description": "Grabs an Export from Pigment's API using a specified view ID. Sends the resulting CSV file to the specified ADLS/blob storage location.",
 				"type": "Copy",
 				"dependsOn": [
 					{
