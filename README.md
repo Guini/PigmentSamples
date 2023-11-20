@@ -10,9 +10,13 @@ An AWS Lambda example that exports one given block's data from Pigment into a sp
 
 # Pigment-to-ADF
 
-Two Azure Data Factory templates:
-1. **pigment-to-adlsv2**: Exports from a view in Pigment and stores it within Azure Data Lake Storega Gen 2 (ADLSv2) in CSV format.
-2. **pigment-to-sfdc**: Exports from a view in Pigment and `UPSERTS` the changes to Salesforce (SFDC). The example uses the Opportunity object, but it can be configured to use any object and can instead `INSERT` if preferred.
+Two Azure Data Factory templates. Both use Azure Key Vault for secrets storage (SFDC token, Pigment API Key), Azure IAM Service User for authorization to the other Azure services, Blob storage for the output and the default runtime configuration.
+
+## **pigment-to-adlsv2**
+
+Exports from a view in Pigment and stores it within Azure Data Lake Storega Gen 2 (ADLSv2) in CSV format.
 
 
-Both use Azure Key Vault for secrets storage (SFDC token, Pigment API Key), Azure IAM Service User for authorization to the other Azure services, Blob storage for the output and the default runtime configuration.
+## **pigment-to-sfdc**: 
+
+Exports from a view in Pigment and `UPSERTS` the changes to Salesforce (SFDC).
