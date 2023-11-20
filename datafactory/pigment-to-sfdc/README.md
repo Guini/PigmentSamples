@@ -1,4 +1,4 @@
-# Pigment Upseert to Salesforce
+# Pigment Upsert to Salesforce
 An Azure Data Factory pipeline template which demonstrates an example of obtaining a CSV export from Pigment's export API and calling Salesforce to upsert the data to the opportunity object.
 
 ## Getting Started
