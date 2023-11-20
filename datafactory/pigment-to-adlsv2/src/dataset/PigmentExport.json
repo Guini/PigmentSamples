@@ -6,11 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"application_id": {
-				"type": "string",
-				"defaultValue": "eb17a15b-f454-4355-8eb7-80a3afa15913"
-			},
-			"list_view_id": {
+			"viewId": {
 				"type": "string",
 				"defaultValue": "0e7c65be-fae2-4306-b9f4-f3a3fa3a56aa"
 			}
@@ -21,7 +17,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "@concat(dataset().application_id,'/view/ExportListData/',dataset().list_view_id)",
+					"value": "dataset().viewId",
 					"type": "Expression"
 				}
 			},
