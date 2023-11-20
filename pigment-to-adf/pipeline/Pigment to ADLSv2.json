@@ -32,7 +32,8 @@
 				}
 			},
 			{
-				"name": "Set Export API Key",
+				"name": "SetExportAPIKey",
+				"description": "Takes the value from GetAPIKey and puts into a variable to be used in the next copy data action,",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -60,7 +61,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set Export API Key",
+						"activity": "SetExportAPIKey",
 						"dependencyConditions": [
 							"Succeeded"
 						]
