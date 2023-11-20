@@ -58,7 +58,7 @@
 			},
 			{
 				"name": "LoadCSVToADLS",
-				"description": "Grabs an Export from Pigment's API using a specified view ID. Sends the resulting CSV file to the specified ADLS/blob storage location.",
+				"description": "Grabs an Export from Pigment's API using a specified view ID. Sends the resulting CSV file to the specified ADLS/Blob storage location.",
 				"type": "Copy",
 				"dependsOn": [
 					{
