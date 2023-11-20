@@ -96,7 +96,10 @@
 						"type": "SalesforceSink",
 						"writeBatchSize": 5000,
 						"writeBehavior": "upsert",
-						"externalIdFieldName": "External_ID__c",
+						"externalIdFieldName": {
+							"value": "@{pipeline().parameters.SFDCExternalID}",
+							"type": "Expression"
+						},
 						"ignoreNullValues": true
 					},
 					"enableStaging": false,
@@ -163,6 +166,9 @@
 				"type": "string"
 			},
 			"SecretIdentifierURL": {
+				"type": "string"
+			},
+			"SFDCExternalID": {
 				"type": "string"
 			}
 		},
