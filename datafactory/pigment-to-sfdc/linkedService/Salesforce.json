@@ -1,0 +1,37 @@
+{
+	"name": "Salesforce",
+	"properties": {
+		"parameters": {
+			"SFDCUsername": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Salesforce",
+		"typeProperties": {
+			"environmentUrl": "https://example.my.salesforce.com",
+			"username": "@{linkedService().SFDCUsername}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SFDCPassword"
+			},
+			"securityToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SFDCToken"
+			},
+			"apiVersion": "57.0"
+		},
+		"connectVia": {
+			"referenceName": "ADFSFDCIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
