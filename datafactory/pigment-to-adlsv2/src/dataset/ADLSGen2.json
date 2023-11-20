@@ -5,6 +5,14 @@
 			"referenceName": "AzureDataLakeStorage",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FileSystem": {
+				"type": "String"
+			},
+			"Directory": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
@@ -14,8 +22,14 @@
 					"value": "@concat('PigmentExport+',utcnow(),'.csv')",
 					"type": "Expression"
 				},
-				"folderPath": "PigmentExport",
-				"fileSystem": "export"
+				"folderPath": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ";",
 			"escapeChar": "\\",
