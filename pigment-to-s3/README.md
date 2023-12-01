@@ -8,7 +8,6 @@ This can be useful if a downstream warehouse/data lake offers S3 loads (e.g. Sno
 ## Other Services Uused
 1. AWS Secrets Manager for Pigment API Key storage
 1. Lambda Environment Variables for some flexibility
-1. _[Not used but recommended]_ AWS Cloud Watch for timer trigger
 1. AWS IAM Manager to ensure Lambda can read/writw to the services here
 
 ## Usage
@@ -26,8 +25,5 @@ This can be useful if a downstream warehouse/data lake offers S3 loads (e.g. Sno
 
 ## Notes
 * If you want to pull multiple files, you can either duplicate the project or amend the code.
-* Use of AWS Secrets Manager is optional but recommended for SDLC best practice.
-* Timer triggers are limited in Lambda without use of AWS Cloud Watch. See their documentation for how to run this using Cloud Watch. Ensure you add CloudWatch to the IAM policy/role as necessary.
-
-# Feedback/Issues
-Feedback is welcome! Please submit any feedback or issues via the Issues tab in Github.
+* Use of AWS Secrets Manager is optional but strongly recommended.
+* Timer triggers are limited in Lambda without use of AWS Cloud Watch. See their documentation for how to run this using Cloud Watch. Ensure you add the corresponding to the IAM policy/role as necessary.
